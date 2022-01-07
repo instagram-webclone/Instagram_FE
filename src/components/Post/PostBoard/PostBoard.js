@@ -2,28 +2,29 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {useNavigate, useParams } from "react-router";
 
+import { loading } from '../../../redux/post/postSlice';
 import {getPostDetail, likePost, savedPost, getUserPost} from "../../../redux/post/post";
 import PostDetailComment from '../PostDetail/PostDetailComment';
 import PostComment from '../PostCard/PostComment';
 import Footer from '../../Page/Footer/Footer';
 
+
 // // modal
 
 // css
 import "./PostBoard.scss";
-import { BiDotsHorizontalRounded } from "react-icons/bi";
+import { BiDotsHorizontalRounded, BiPlusCircle } from "react-icons/bi";
 import {post_red_heart, post_heart, message, text, post_save, post_saveActive, none_profile} from "../../../common/IconImage";
 import PostBookmarkToast from '../PostModal/PostBookmarkToast';
 import ProfilePosts from '../../Page/Profile/CommonProfile/ProfilePosts';
 import PostBoardOptionModal from './PostBoardOptionModal';
+
 
 const PostBoard = () => {	
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const {postId} = useParams();
-
-	console.log(postId);
 
 	// main이랑 path로 action 구분
 	const path = "postDetail";
@@ -32,21 +33,31 @@ const PostBoard = () => {
 	const comments = useSelector((state) => state.post.comment);
 	const myId = useSelector(state=>state.user.user.userId);
   const post_list = useSelector(state=>state.post.post);
-  console.log(post_list);
-	console.log(myId);
+  // console.log(post_list);
   // console.log(postDetail);
 
   const id = postDetail && postDetail.writer.userId;
-  console.log(id);
 
 	const replyTag = useSelector((state) => state.post.replyTag); 
 	const replyUserId = useSelector(state => state.post.replyTag?.writer);
 	const replyCommentId = useSelector(state => state.post.replyTag?.commentId);
 
-  useEffect(() => {
-    dispatch(
-      getPostDetail(postId));
-  }, [postId]);
+ // 페이지네이션
+ const [page, setPage] = useState(1);
+
+ useEffect(() => {
+	 const pageSection = "fristPage";
+	 dispatch(loading(true));
+	 dispatch(getPostDetail({postId, page, pageSection}));
+	 setPage(page + 1);
+ }, []);
+
+ const paginationHandler = () => {
+	 const pageSection = "more";
+	 dispatch(loading(true));
+	 dispatch(getPostDetail({postId, page, pageSection}));
+	 setPage(page + 1);
+ }
 	
 	// 포스트 좋아요
 	const postLikeClickHandler = () => {
@@ -120,7 +131,25 @@ const PostBoard = () => {
     {openModal && <PostBoardOptionModal postId={postId} myId={myId} writer={id} setOpenModal={setOpenModal} />}
     {postDetail &&
     <div className="postBoard_allContainer">
+			
       <div className="postBoard_topContainer" >
+
+				{/* 반응형 모바일 사이즈에만 적용 */}
+				<div className="postBoard_header mobileBox">
+				<div className="postBoard_header mobile">
+					<div className="postBoard_header_pic" onClick={UserProfileClickHandler}>
+							<img src={user_img} alt="pp" />
+					</div>
+					<div className="postBoard_header_userId">
+						<span onClick={UserProfileClickHandler}>{id}</span> * <span> 팔로잉</span>
+					</div>
+					<div className="postBoard_header_btn" onClick={show_postOptionModal}>
+						<BiDotsHorizontalRounded size={25} />
+					</div>
+				</div>
+				</div>
+				
+
 					<div className="postBoard_leftsideBox">
 						<img src={postDetail.imageUrl} alt="postImg" />
 					</div>
@@ -163,6 +192,11 @@ const PostBoard = () => {
 										childComments={comment.childComments} profileImage={comment.writer.profileImage} myId={myId}
 										/>
 									))}
+									<div className="postDetail_commentMore">
+										{(comments.length % 10 === 0) && (
+											<button onClick={paginationHandler}><BiPlusCircle size={26}/></button>
+										)}
+									</div>
 									<PostBookmarkToast postId={postId} bookmarkToast={bookmarkToast}/>
 							</div>
 						
@@ -225,19 +259,20 @@ const PostBoard = () => {
 					</div>
 					</div>
       <div className="postBoard_bottomContainer">
-        {/* 경계선 */} <div/>
-        <div>
-          <div>
-            <span>{id}</span>님의 게시물 더 보기
-          </div>
-          <div className="postBoard_postRec">
-            {post_list && post_list.map((post, idx) => (
-              <ProfilePosts
-              key = {idx}
-              picture = {post.imageUrl}
-              userId = {post._id}/>
-            ))}
-          </div>
+        {/* 경계선 */}
+				<div/>
+					<div>
+						<div>
+							<span>{id}</span>님의 게시물 더 보기
+						</div>
+						<div className="postBoard_postRec">
+							{post_list && post_list.map((post, idx) => (
+								<ProfilePosts
+								key = {idx}
+								picture = {post.imageUrl}
+								userId = {post._id}/>
+							))}
+						</div>
           </div>
         </div>
         <Footer/>

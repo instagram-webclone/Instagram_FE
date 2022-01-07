@@ -20,34 +20,44 @@
 
 .profile_img {
  display: flex;
+ justify-content: space-between;
+
  & > div {
-  margin-top: 15px;
+  margin-top: 10px;
   @include fontSize('large');
   font-weight: bold;
   color: $instaMenuBlack;
  }
+
+ .post_userBox{
+  display: flex;
+
+  .post_user_id {
+    @include fontSize('large');
+    font-weight: bold;
+    color: $instaMenuBlack;
+    cursor: pointer;
+    line-height: 35px;
+   }
+   
+   .post_user_image {
+    width: 32px;
+    height: 32px;
+    border-radius: 30px;
+    margin: 3px 15px 10px 15px;
+   }
+}
 }
 
 //포스트 아이디 댓글 아이디 모두 글씨 style적용
-.post_user_id {
- @include fontSize('large');
- font-weight: bold;
- color: $instaMenuBlack;
- cursor: pointer;
-}
 
-.post_user_image {
- width: 30px;
- height: 30px;
- border-radius: 30px;
- margin: 10px;
-}
 .profile_img_dot{
  cursor: pointer;
- margin-left: 78%;
+ margin-right: 20px;
+ justify-content: space-between;
+ line-height: 35px;
  & >img {
   width: 13px;
-
   margin-bottom: 2px;
  }
 }
@@ -104,15 +114,16 @@
 .post_one_comment{
  display: flex;
  justify-content: space-between;
+ margin-left: -10px;
  & > div >span:first-child{
   @include fontSize('large');
   font-weight: bold;
   color: $instaMenuBlack;
   cursor: pointer;
-  margin-left: -10px;
  }
  & > img {
   margin-right: 13px;
+  
  }
 }
 
@@ -191,13 +202,26 @@
  .react-emoji > .react-emoji-picker--container{
   margin-left: -115px;
  }
- .post_one_comment > div:nth-child(2){
-  margin-left: -220px;
- }
  .post_center_image{
   max-width: 498px;
  }
+ .profile_img {
+  width: 490px;
+  height: 60px;
 
+  & > .profile_img_dot{
+    margin-right: 0px;
+  }
+ }
+ .post_saveActive {
+  margin-left: -146px;
+ }
+ .post_save{
+  margin-left: -146px;
+ }
+ .post_one_comment{
+  margin-right: 110px;
+ }
 
 }
 
@@ -211,8 +235,29 @@
  }
  .post_one_comment > div:nth-child(2){
   margin-left: -220px;
+  
  }
  .post_center_image{
   max-width: 480px;
  }
+ .profile_img {
+  width: 475px;
+
+  & > .profile_img_dot{
+    margin-right: 0px;
+  }
+ }
+ .post_saveActive {
+  margin-left: -164px;
+ }
+ .post_save{
+  margin-left: -164px;
+ }
+ .post_one_comment{
+  margin-right: 127px;
+ }
+ .postDetail_postComment{
+  display: none;
+ }
+
 }

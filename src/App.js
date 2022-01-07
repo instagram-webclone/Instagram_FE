@@ -54,7 +54,7 @@ function App() {
 
   return (
 
-    <div className="App">
+    <div className="App" >
       <Suspense fallback={<div>Loading</div>}>
       <CustomRouter history={history}>
         {show_header &&  <Header/>}

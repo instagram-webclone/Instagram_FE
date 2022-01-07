@@ -6,15 +6,15 @@ import { history } from '../../../history';
 import {getPostDetail, likePost, savedPost} from "../../../redux/post/post";
 import PostDetailComment from './PostDetailComment';
 import PostComment from '../PostCard/PostComment';
+import { loading, replyReducer } from '../../../redux/post/postSlice';
 
 // modal
 import PostOptionModal from './PostOptionModal';
 
 // css
 import "./PostDetail.scss";
-import { BiDotsHorizontalRounded, BiX } from "react-icons/bi";
+import { BiDotsHorizontalRounded, BiX, BiPlusCircle } from "react-icons/bi";
 import {post_red_heart, post_heart, message, text, post_save, post_saveActive, none_profile} from "../../../common/IconImage";
-import { replyReducer } from '../../../redux/post/postSlice';
 import PostBookmarkToast from '../PostModal/PostBookmarkToast';
 
 const PostDetail = () => {	
@@ -33,18 +33,28 @@ const PostDetail = () => {
 	const replyTag = useSelector((state) => state.post.replyTag); 
 	const replyUserId = useSelector(state => state.post.replyTag?.writer);
 	const replyCommentId = useSelector(state => state.post.replyTag?.commentId);
-	// console.log(postDetail);
+
+	// 페이지네이션
+	const [page, setPage] = useState(1);
 
 	useEffect(() => {
-    dispatch(getPostDetail(postId));
-  }, [getPostDetail]);
+		const pageSection = "fristPage";
+		dispatch(loading(true));
+    dispatch(getPostDetail({postId, page, pageSection}));
+		setPage(page + 1);
+  }, []);
 
+	const paginationHandler = () => {
+		const pageSection = "more";
+		dispatch(loading(true));
+    dispatch(getPostDetail({postId, page, pageSection}));
+		setPage(page + 1);
+	}
+	
 	// 포스트 좋아요
-
 	const postLikeClickHandler = () => {
-		const _id = postDetail.writer._id
+		const _id = postDetail.writer._id;
 
-		console.log(_id)
     dispatch(
       likePost({
         postId,
@@ -169,6 +179,11 @@ const PostDetail = () => {
 										childComments={comment.childComments} profileImage={comment.writer.profileImage} myId={myId}
 										/>
 									))}
+									<div className="postDetail_commentMore">
+										{(comments.length % 10 === 0) && (
+											<button onClick={paginationHandler}><BiPlusCircle size={26}/></button>
+										)}
+									</div>
 									<PostBookmarkToast postId={postId} bookmarkToast={bookmarkToast}/>
 							</div>
 						

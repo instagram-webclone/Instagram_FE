@@ -132,9 +132,11 @@ const PostCard = ({contents, createdAt, writer, postId, likeCount, postImage,
         <div className="post_card">
           <div className="post_header">
             <div className="profile_img">
-              <img className="post_user_image" src={user_img}/>
-
-              <div className="post_user_id" onClick={UserProfileClickHandler}>{writer[0].userId}</div>
+              <div className="post_userBox">
+                <img className="post_user_image" src={user_img}/>
+                <div className="post_user_id" onClick={UserProfileClickHandler}>{writer[0].userId}</div>
+              </div>
+              
               <div className="profile_img_dot" onClick={show_postOptionModal}>
                <img src={dot}/>
               </div>
@@ -200,12 +202,13 @@ const PostCard = ({contents, createdAt, writer, postId, likeCount, postImage,
                   댓글 <span>{commentCount}</span>개 모두 보기</span>
                 )}
               </div>
-              {get_comments && get_comments.map((comment) => (
-              <PostGetComment contents ={comment.contents}
-                              postId={comment.postId}
-                              writer={comment.writer}
-                              commentId={comment._id}
-                              isLike={comment.isLike}/>
+              {get_comments && get_comments.map((comment, idx) => (
+              <PostGetComment key={idx}
+                contents ={comment.contents}
+                postId={comment.postId}
+                writer={comment.writer}
+                commentId={comment._id}
+                isLike={comment.isLike}/>
             ))}
             <div className="post_time">{time}</div>
             <div className="postDetail_postComment">
