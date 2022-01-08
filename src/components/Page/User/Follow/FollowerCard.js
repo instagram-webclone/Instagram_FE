@@ -25,6 +25,7 @@ const FollowerCard = ({name, userId, profileImage, isFollow, myFollowers, _id, m
       SetUserData(false)
     }
   },[])
+
   return (
     <>
       <div className="follow_Card">

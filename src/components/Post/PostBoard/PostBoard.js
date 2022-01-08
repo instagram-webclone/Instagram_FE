@@ -33,8 +33,7 @@ const PostBoard = () => {
 	const comments = useSelector((state) => state.post.comment);
 	const myId = useSelector(state=>state.user.user.userId);
   const post_list = useSelector(state=>state.post.post);
-  // console.log(post_list);
-  // console.log(postDetail);
+
 
   const id = postDetail && postDetail.writer.userId;
 

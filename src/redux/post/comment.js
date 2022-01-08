@@ -51,7 +51,7 @@ export const likedComment = createAsyncThunk(
 	"commment/likedComment",
 	
 	async ({ commentId, AccessToken, path, postId }) => {
-		console.log(commentId,postId, path );
+
 		try {
 			const response = await Api({
 				url: `/comment/${commentId}/like`,

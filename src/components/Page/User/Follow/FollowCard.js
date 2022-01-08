@@ -4,28 +4,39 @@ import profile from "../../../../image/profile.png";
 import React from "react";
 import "./CardStyle.scss";
 import FollowButton from "../../../../common/FollowButton";
+import {hash_icon} from "../../../../common/IconImage";
 
 
-const FollowCard = ({name, userId, profileImage, isFollow, _id, isFollowing}) => {
-
-  console.log(isFollow);
+const FollowCard = ({follow, hash}) => {
 
   return (
     <>
-      <div className="follow_Card">
+      {follow &&  <div className="follow_Card">
         <div className="follow_info">
-          {profileImage?  <img src={profileImage} alt="profile_img"/> :  <img src={profile} alt="profile_img"/> }
+          {follow.profileImage?  <img src={follow.profileImage} alt="profile_img"/> :  <img src={profile} alt="profile_img"/> }
 
           <div className="follow_user">
-            <div>{userId}</div>
-            <div>{name}</div>
+            <div>{follow.userId}</div>
+            <div>{follow.name}</div>
           </div>
         </div>
         <div className="card_button">
-         <FollowButton isFollow={isFollow} _id={_id} isFollowing={isFollowing}/>
+          <FollowButton isFollow={follow.isFollow} _id={follow._id} isFollowing={follow.isFollowing}/>
         </div>
+      </div>}
+      {hash && <div className="follow_Card">
+        <div className="follow_info">
+           <img src={hash_icon} alt="hashtag_image"/>
 
-      </div>
+          <div className="follow_user">
+            <div>{hash.hashtag}</div>
+          </div>
+        </div>
+        <div className="card_button">
+          <FollowButton hashIsFollow={hash.isFollow} _id={hash._id} isFollowing={hash.isFollowing} hashtag={hash.hashtag}/>
+        </div>
+      </div>}
+
 
     </>
   )

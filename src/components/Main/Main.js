@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPost } from "../../redux/post/post";
 import PostLikeModal from "../Post/PostModal/PostLikeModal";
 import { loading } from "../../redux/post/postSlice";
+
 const Main = () => {
   const dispatch = useDispatch();
 

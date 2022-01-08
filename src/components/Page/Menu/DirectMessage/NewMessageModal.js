@@ -52,7 +52,6 @@ const NewMessageModal = ({SetNewMessage , SetNewMessages}) => {
 
   const createRoomClickHandler = () => {
     const RoomId = nanoid();
-    console.log(RoomId);
     dispatch(createRoomDB({
       RoomId,
       check_user,

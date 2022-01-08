@@ -54,7 +54,7 @@
   justify-content: space-between;
   padding: 5px 20px 0 20px;
   height: 40px;
-  border-bottom: none;
+  border-bottom: 1px solid $instaGray;
   font-weight: 600;
   line-height: 35px;
   color: $instaMenuBlack;
@@ -79,7 +79,7 @@
 
   .img_preview_after {
     width: 720px;
-    height: 718px;
+    height: 713px;
     position: absolute;
     overflow: hidden;
     max-width: 1024px;
@@ -89,7 +89,8 @@
   .add_post_image_after {
     display: grid;
     grid-template-columns: repeat(2, 720px 320px);
-    height: 718px;
+    height: 713px;
+
 
     .add_text_Post {
       border-left: 1px solid $instaGray;
@@ -121,21 +122,32 @@
 
         &::placeholder {
           @include fontSize("large");
+          color: #858585;
+
         }
       }
-
       .add_post_menu {
         height: 45px;
         border-top: 1px solid $instaGray;
         line-height: 45px;
         text-align: left;
         padding-left: 15px;
+
       }
     }
   }
 }
-
-
+.add_post_setting{
+  display: flex;
+  color: $instaMenuBlack;
+  & > div:nth-child(2){
+    margin: -37px 0 0 20px;
+    color: $instaMenuGray;
+  }
+}
+.setting_text{
+  @include fontSize('small');
+}
 .thump {
   display: inline-flex;
   border-radius: 2px;
@@ -174,6 +186,7 @@
 .before_add_image {
   width: 100%;
   margin-left: -20px;
+
 }
 
 .post_center {
@@ -203,7 +216,7 @@
     width: 400px;
     height: 400px;
     display: flex;
-
+    border: none;
 
   }
   .img_preview{

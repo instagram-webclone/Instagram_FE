@@ -26,9 +26,7 @@ const FollowerModal = ({isFollowing}) => {
   },[dispatch])
   //
   const FollowList = useSelector(state=>state.user.FollowList);
-  const a = useSelector(state=>state.user);
-
-  console.log(a);
+  const hashList = useSelector(state=>state.user.hashtagFollow);
 
   const [people, SetPeople] = useState(true);
   const [hashTag, SetHashTag]= useState(false);
@@ -56,13 +54,12 @@ const FollowerModal = ({isFollowing}) => {
         <div className="modal_common_card">
           {people && FollowList.map((follow) => (
             <FollowCard
-              _id={follow._id}
-            name ={follow.name}
-            userId={follow.userId}
-            profileImage={follow.profileImage}
-            isFollow={follow.isFollow}
-              isFollowing={isFollowing}
+            follow={follow}
             />
+          ))}
+          {hashTag && hashList.map((hash) => (
+            <FollowCard
+            hash={hash}/>
           ))}
 
 

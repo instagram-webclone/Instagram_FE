@@ -80,7 +80,6 @@ const DirectChat = () => {
   const chat_list = useSelector(state=>state.socket.chatData);
   const my_info = useSelector(state=>state.user.user);
 
-  console.log(chat_list)
 
 
   //아래로 스크롤 내려가고 채팅 올라올 시 자동으로 스크롤 아래로 내려주기.
@@ -135,7 +134,7 @@ const DirectChat = () => {
 
   //참가자 확인하기
   const participant_list = useSelector(state=> state.socket.participant);
-  console.log(participant_list);
+
 
   const Participant = () => {
     return(

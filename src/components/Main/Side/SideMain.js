@@ -41,9 +41,9 @@ const SideMain = ({user_recommend}) => {
           <div>회원님을 위한 추천</div>
           <a>모두 보기</a>
         </div>
-        {/*{user_recommend && user_recommend.map((user) => (*/}
-          <SideRecommend/>
-        {/*))}*/}
+        {user_recommend && user_recommend.map((user) => (
+          <SideRecommend user={user}/>
+        ))}
 
       </div>
       </div>

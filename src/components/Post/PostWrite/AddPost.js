@@ -139,7 +139,8 @@ const AddPost = () => {
         <div>
           <div className="add_post_title">
             <div onClick={cancellationClickHandler}><img src={back_arrow} alt="back_arrow"/></div>
-            <div>새 게시물 만들기</div> <div className="write_end" onClick={postWriteClickHandler}>등록하기</div>
+            <div>새 게시물 만들기</div>
+            <div className="write_end" onClick={postWriteClickHandler}>등록하기</div>
           </div>
 
           <div className="add_post_image_after">
@@ -162,8 +163,14 @@ const AddPost = () => {
                 고급 설정
                 {setting &&
                 <div>
-                  <CommentSwitch SetCommentCheck={SetCommentCheck} commentCheck={commentCheck}/>
-                  <a>나중에 게시물 상단의 메뉴(...)에서 이 설정을 변경할 수 있습니다.</a>
+                  <div className="add_post_setting">
+                    <div>댓글 기능 해제</div>
+                    <div>
+                      <CommentSwitch SetCommentCheck={SetCommentCheck} commentCheck={commentCheck}/>
+                    </div>
+
+                </div>
+                  <div className="setting_text">나중에 게시물 상단의 메뉴(...)에서 이 설정을 변경할 수 있습니다.</div>
                   </div>}
 
               </div>

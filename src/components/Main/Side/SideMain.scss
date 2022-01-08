@@ -39,7 +39,7 @@
 
 
 .side_blue{
-  margin-left: 140px;
+  margin-left: 155px;
   @include fontSize("normal");
   font-weight: bold;
   margin-top: 15px;
@@ -73,7 +73,13 @@
   .recommend_follow {
     color: $instaBlue;
     font-weight: bold;
-    margin-left: 42px;
+    margin-left: 105px;
+
+  }
+  .recommend_following {
+    color: $instaMenuGray;
+    font-weight: bold;
+    margin-left: 105px;
   }
   .follow_recommend_id {
     font-weight: bold;
