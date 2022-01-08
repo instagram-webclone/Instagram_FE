@@ -57,14 +57,13 @@ const Login = () => {
 								/>
 								<label className="login_label_username">
 									<span className="login_content_username">
-										전화번호, 사용자 이름 또는 이메일
+										사용자 이름 또는 이메일
 									</span>
 								</label>
 							</div>
 							<div className="login_login_pwd">
 								<input
 									className="login_login_input_pwd"
-									autoComplete="off"
 									required
 									type={checkPassword ? "password" : "text"}
 									value={password}

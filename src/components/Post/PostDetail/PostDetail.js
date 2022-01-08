@@ -12,6 +12,7 @@ import { loading, replyReducer } from '../../../redux/post/postSlice';
 import PostOptionModal from './PostOptionModal';
 
 // css
+import "../../../common/_postComment.scss";
 import "./PostDetail.scss";
 import { BiDotsHorizontalRounded, BiX, BiPlusCircle } from "react-icons/bi";
 import {post_red_heart, post_heart, message, text, post_save, post_saveActive, none_profile} from "../../../common/IconImage";
@@ -137,6 +138,23 @@ const PostDetail = () => {
 				<div className="postDetail_overlay" onClick={cancleClickHandler}/>
 				<div className="postDetail_exit"><BiX size={40} onClick={cancleClickHandler}/></div>
 				<div className="postDetail_container" >
+
+					{/* 반응형 모바일 사이즈에만 적용 */}
+					<div className="postDetail_header mobileBox">
+						<div className="postDetail_header mobile">
+							<div className="postDetail_header_pic">
+									<img src={user_img} alt="pp" />
+							</div>
+							<div className="postDetail_header_userId">
+								<span onClick={UserProfileClickHandler}>{postDetail.writer.userId}</span> * <span> 팔로잉</span>
+							</div>
+							<div className="postDetail_header_btn" onClick={show_postOptionModal}>
+								<BiDotsHorizontalRounded size={25} />
+							</div>
+						</div>
+					</div>
+					
+
 					<div className="postDetail_leftsideBox">
 						<img src={postDetail.imageUrl} alt="postImg" />
 					</div>
@@ -180,7 +198,7 @@ const PostDetail = () => {
 										/>
 									))}
 									<div className="postDetail_commentMore">
-										{(comments.length % 10 === 0) && (
+										{comments.length % 10 === 0 && (
 											<button onClick={paginationHandler}><BiPlusCircle size={26}/></button>
 										)}
 									</div>

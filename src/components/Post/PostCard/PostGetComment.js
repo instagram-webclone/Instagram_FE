@@ -43,7 +43,7 @@ const PostGetComment = ({contents, writer, postId, commentId, isLike}) => {
     <>
       <div className="post_comment">
         <div className="post_one_comment">
-          <div> <span onClick={UserProfileClickHandler}>{id}</span>  <a>{contents}</a> </div>
+          <div> <span className="post_user_comment" onClick={UserProfileClickHandler}>{id}</span>  <a>{contents}</a> </div>
           {isLike ? (
             <img src={comment_red_heart} onClick={commentLikeClickHandler}/>
             ) : (

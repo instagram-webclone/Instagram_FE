@@ -38,22 +38,6 @@ const SignUp = () => {
 		navigate("/login");
 	};
 
-	// const SingUpEnterHandler = (e) => {
-	// 	if (e.key == 'Enter') {
-	// 	dispatch(
-	// 		singUp({
-	// 			email,
-	// 			name,
-	// 			userId,
-	// 			password,
-	// 		}),
-	// 		[dispatch],
-	// 	);
-	// 	alert('가입 되었습니다.');
-	// 	navigate("/login");
-	// 	};
-	// };
-
 	const EmailOnChange = (e) => {
 		SetEmail(e.target.value);
 	};
@@ -126,10 +110,11 @@ const SignUp = () => {
 										value={email}
 										onChange={EmailOnChange}
 										onKeyUp={EmailCheck}
+										required
 									/>
 									<label className="signup_label">
-										<span className="signup_label_name">
-											휴대폰 번호 또는 이메일 주소
+										<span className="signup_title">
+											이메일 주소
 										</span>
 									</label>
 									{!IsEmail && (
@@ -146,9 +131,10 @@ const SignUp = () => {
 										value={name}
 										onChange={NameOnChange}
 										onKeyUp={NameCheck}
+										required
 									/>
 									<label className="signup_label">
-										<span className="signup_label_name">성명</span>
+										<span className="signup_title"> 성명 </span>
 									</label>
 									{IsName && (
 										<div className="signup_check_box">
@@ -164,26 +150,22 @@ const SignUp = () => {
 										value={userId}
 										onChange={UserIdOnChange}
 										onKeyUp={UserIdCheck}
+										required
 									/>
 									<label className="signup_label">
-										<span className="signup_label_name">사용자 이름</span>
+										<span className="signup_title">사용자 이름</span>
 									</label>
 									{!ISUserId && (
-										<div className="signup_check_box_userId">
+										<div className="signup_check_box">
 											<span className="signup_check">
 												<BiXCircle color={"#F04756"} size={25} />
 											</span>
-											<div>
-												<button className="signup_check_btn_userId">
-													<FiRotateCw color={"#0095f6"} size={22} />
-												</button>
-											</div>
 										</div>
 									)}
 								</div>
 								<div className="signup_content_form">
 									<input
-										className="signup_pwd"
+										required
 										type={checkPassword ? "password" : "text"}
 										value={password}
 										onChange={PassWordOnChange}
@@ -195,11 +177,10 @@ const SignUp = () => {
 										/>
 
 									<label className="signup_label">
-										<span className="signup_label_name">비밀번호</span>
+										<span className="signup_title">비밀번호</span>
 									</label>
-
 									<div className="signup_check_box_pwd">
-										{!password.length < 6 && (
+										{password.length > 6 && (
 											<span className="signup_check_pwd">
 												<BiCheckCircle color={"#c7c7c7"} size={25} />
 											</span>

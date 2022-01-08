@@ -12,6 +12,7 @@ import Footer from '../../Page/Footer/Footer';
 // // modal
 
 // css
+import "../../../common/_postComment.scss";
 import "./PostBoard.scss";
 import { BiDotsHorizontalRounded, BiPlusCircle } from "react-icons/bi";
 import {post_red_heart, post_heart, message, text, post_save, post_saveActive, none_profile} from "../../../common/IconImage";
@@ -33,8 +34,6 @@ const PostBoard = () => {
 	const comments = useSelector((state) => state.post.comment);
 	const myId = useSelector(state=>state.user.user.userId);
   const post_list = useSelector(state=>state.post.post);
-  // console.log(post_list);
-  // console.log(postDetail);
 
   const id = postDetail && postDetail.writer.userId;
 
@@ -49,6 +48,7 @@ const PostBoard = () => {
 	 const pageSection = "fristPage";
 	 dispatch(loading(true));
 	 dispatch(getPostDetail({postId, page, pageSection}));
+	//  dispatch(getUserPost(id));
 	 setPage(page + 1);
  }, []);
 
@@ -136,17 +136,17 @@ const PostBoard = () => {
 
 				{/* 반응형 모바일 사이즈에만 적용 */}
 				<div className="postBoard_header mobileBox">
-				<div className="postBoard_header mobile">
-					<div className="postBoard_header_pic" onClick={UserProfileClickHandler}>
-							<img src={user_img} alt="pp" />
+					<div className="postBoard_header mobile">
+						<div className="postBoard_header_pic" onClick={UserProfileClickHandler}>
+								<img src={user_img} alt="pp" />
+						</div>
+						<div className="postBoard_header_userId">
+							<span onClick={UserProfileClickHandler}>{id}</span> * <span> 팔로잉</span>
+						</div>
+						<div className="postBoard_header_btn" onClick={show_postOptionModal}>
+							<BiDotsHorizontalRounded size={25} />
+						</div>
 					</div>
-					<div className="postBoard_header_userId">
-						<span onClick={UserProfileClickHandler}>{id}</span> * <span> 팔로잉</span>
-					</div>
-					<div className="postBoard_header_btn" onClick={show_postOptionModal}>
-						<BiDotsHorizontalRounded size={25} />
-					</div>
-				</div>
 				</div>
 				
 
@@ -193,9 +193,10 @@ const PostBoard = () => {
 										/>
 									))}
 									<div className="postDetail_commentMore">
-										{(comments.length % 10 === 0) && (
-											<button onClick={paginationHandler}><BiPlusCircle size={26}/></button>
-										)}
+										{comments.length === 0 ? "" :
+										postDetail.commentCount === 10 ? "" :
+										comments.length % 10 === 0 ? <button onClick={paginationHandler}><BiPlusCircle size={26}/></button>
+										: ""}
 									</div>
 									<PostBookmarkToast postId={postId} bookmarkToast={bookmarkToast}/>
 							</div>
@@ -269,8 +270,10 @@ const PostBoard = () => {
 							{post_list && post_list.map((post, idx) => (
 								<ProfilePosts
 								key = {idx}
-								picture = {post.imageUrl}
-								userId = {post._id}/>
+								list={post}
+								// picture = {post.imageUrl}
+								// userId = {post._id}
+								/>
 							))}
 						</div>
           </div>

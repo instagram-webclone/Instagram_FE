@@ -1,0 +1,59 @@
+@import "./src/common/mixin";
+@import "./src/common/variables.scss";
+
+.react-emoji {
+  border-color: #ffffff;
+  display: flex;
+	height: auto;
+ 
+  & > div:first-child {
+   order: 2;
+  }
+  .react-emoji-picker--container {
+   opacity: 0.9;
+  }
+  &> button{
+   margin-right: -20px;
+  }
+ }
+
+ .postDetail_postComment{
+	position: relative;
+	
+.postDetail_cmt {
+	display: flex;
+	border-top: 1px solid $instaGray;
+
+	.postDetail_cmt > input{
+	position: absolute;
+	border: none;
+	&:focus{
+	 outline: none;
+	}
+ }
+
+ .postDetail_submit {
+	width: 60px;
+	height: 46px;
+	line-height: 55px;
+	margin-right: 5px;
+	color: $instaBlue;
+	font-weight: 600;
+	border: none;
+	background: $instaWhite;
+	cursor: pointer;
+ }
+
+ .postDetail_submitOff {
+	width: 60px;
+	height: 46px;
+	line-height: 55px;
+	margin-right: 5px;
+	color: #C5E7FD;
+	font-weight: 600;
+	border: none;
+	background: $instaWhite;
+	cursor: pointer;
+ }
+}
+}

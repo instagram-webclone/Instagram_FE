@@ -15,7 +15,7 @@
 	margin: auto;
 	justify-content: center;
 	text-align: center;
-	height: 85vh;
+	height: 100vh;
 }
 
 .signup_content {
@@ -104,6 +104,23 @@
 	outline: none;
 	@include fontSize("normal");
 
+	& > label {
+		display: flex;
+		justify-content: space-between;
+		@include fontSize("small");
+		position: absolute;
+		width: 190px;
+		height: 36px;
+		pointer-events: none;
+	}
+
+	.signup_title{
+		@include fontSize("normal");
+		left: 10px;
+		position: absolute;
+		bottom: 12px;
+	}
+
 	& > input {
 		@include fontSize("normal");
 		height: 14px;
@@ -115,63 +132,11 @@
 		background-color: #fafafa;
 	}
 
-	.signup_pwd {
-		@include fontSize("normal");
-		height: 14px;
-		width: 120px;
-		padding: 10px 0 0 8px;
-		margin: 8px 0 0 2px;
-		border: none;
-		outline: none;
-		background-color: #fafafa;
-	}
-
-	& > label {
-		display: flex;
-		justify-content: space-between;
-		@include fontSize("small");
-		position: absolute;
-		width: 180px;
-		height: 36px;
-		pointer-events: none;
-		// overflow: hidden;
-	}
-
-	// & > label::after {
-	// 	content: "";
-	// 	position: absolute;
-	// 	left: 0px;
-	// 	bottom: -1px;
-	// 	height: 100%;
-	// 	width: 100%;
-	// 	border-bottom: 3px solid blue;
-	// 	transition: all 0.3s ease;
-	// 	transform: translateX(-100%);
-	// }
-
-	.signup_label_name {
-		@include fontSize("normal");
-		left: 10px;
-		position: absolute;
-		bottom: 12px;
-		@include fontSize("normal");
-		// transition: all 0.3s ease;
-	}
-
 	.signup_check_box {
 		display: flex;
 		height: 30px;
 		width: 30px;
 		line-height: 45px;
-		margin-top: 5px;
-	}
-
-	.signup_check_box_userId {
-		display: flex;
-		box-sizing: border-box;
-		width: 80px;
-		height: 30px;
-		line-height: 40px;
 		margin-top: 5px;
 	}
 
@@ -186,23 +151,15 @@
 	}
 
 	.signup_check {
-		width: auto;
-		right: 0px;
+		width: 30px;
 		margin-right: 10px;
 		height: 22px;
 	}
 
 	.signup_check_pwd {
-		right: 0px;
-		margin-right: 5px;
+		margin-left: -30px;
 		height: 22px;
 		margin-top: 6px;
-	}
-
-	.signup_check_btn_userId {
-		background-color: #fafafa;
-		border: none;
-		height: 22px;
 	}
 
 	.signup_pwd_check {
@@ -211,20 +168,17 @@
 		background-color: #fafafa;
 		font-weight: bold;
 		text-align: center;
-		width: auto;
+		width: 90px;
 		cursor: pointer;
+		margin-right: 10px;
 	}
 }
 
-.signup_content_form input:focus + .signup_label .signup_label_name {
-	transform: translateY(-45%);
+.signup_content_form input:focus + .signup_label .signup_title,
+.signup_content_form input:valid + .signup_label .signup_title{
+	transform: translateY(-50%);
 	@include fontSize("small");
 }
-
-// .signup_content_form input:focus + .signup_label_email::after,
-// .signup_content_form input:valid + .signup_label_email::after {
-// 	transform: translateX(0%);
-// }
 
 .signup_btn_active {
 	width: 271px;

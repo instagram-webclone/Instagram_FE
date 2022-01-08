@@ -10,17 +10,18 @@
   align-items: center;
   text-align: center;
   z-index: 100;
-  position: fixed;
+	top: 50%;
+	transform: translateY(-50%);
 
 	.postDetailComment_modal_modal {
 		width: 400px;
 		height: 145px;
 		border: 1px solid $instaGray;
 		border-radius: 10px;
-		position: absolute;
 		z-index: 100;
 		background-color: $instaWhite;
 		cursor: pointer;
+		border: 3px solid blue;
 
 		& > div {
 			border-bottom: 1px solid $instaGray;
@@ -49,10 +50,10 @@
 		height: 96px;
 		border: 1px solid $instaGray;
 		border-radius: 10px;
-		position: absolute;
 		z-index: 100;
 		background-color: $instaWhite;
 		cursor: pointer;
+		border: 3px solid red;
 
 		& > div {
 			border-bottom: 1px solid $instaGray;
@@ -70,7 +71,6 @@
       border: none;
     }
   }
-
 }
 
 .postDetailComment_modal_overlay {
@@ -86,21 +86,15 @@
 
 }
 
-@include desktop {
-  .profile_modal_container {
-    top: 50%;
-  }
-}
-
 @include tablet {
-  .profile_modal_container {
-    top: 65%;
-  }
+	.profile_modal_container {
+	.postDetailComment_modal_modal {
+		border: 3px solid skyblue;
+		transform: translateY(-40%);
+	}
+	.postDetailComment_others_modal {
+		border: 3px solid green;
+		transform: translateY(-50%);
+	}
 }
-
-@include mobile {
-  .profile_modal_container {
-    left: 10%;
-    top: 65%;
-  }
 }

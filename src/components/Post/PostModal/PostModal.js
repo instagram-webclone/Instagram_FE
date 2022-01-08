@@ -10,6 +10,7 @@ const PostModal = ({myId, writer, setOpenModal, postId}) => {
 
 	const cancleClickHandler = () => {
 		setOpenModal(false);
+		document.body.style.overflow = "unset"; 
 	};
 
 	const deleteClickHandler = () => {
