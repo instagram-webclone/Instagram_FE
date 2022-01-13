@@ -78,7 +78,7 @@ const Login = () => {
 								<label className="login_label_pwd">
 									<span className="login_content_pwd">비밀번호</span>
 								</label>
-								{password && (
+								{password && password.length > 6 && (
 									<div className="login_check_pwd">
 										{checkPassword ? (
 											<button onClick={PasswordCheckClickHandler}>

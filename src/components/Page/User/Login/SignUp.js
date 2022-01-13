@@ -1,36 +1,31 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
 import Footer from "../../Footer/Footer";
 import "./SignUp.scss";
 import {download1, download2, instagramlogo, facebook_white,} from "../../../../common/LoginImage";
 import { BiXCircle, BiCheckCircle } from "react-icons/bi";
-import { FiRotateCw } from "react-icons/fi";
 import {singUp} from "../../../../redux/user/user";
 
 const SignUp = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const [email, SetEmail] = useState("");
-	const [name, SetName] = useState("");
-	const [userId, SetUserId] = useState("");
-	const [password, SetPassword] = useState("");
 
-	// 유효성검사
-	const [IsEmail, SetIsEmail] = useState(true);
-	const [IsName, SetIsName] = useState(false);
-	const [ISUserId, SetIsUserId] = useState(true);
+	const { register, handleSubmit, watch, formState: {errors} } = useForm();
 
 	// 비밀번호표시
 	const [checkPassword, SetCheckPassword] = useState(true);
 
-	const SingUpClickHandler = () => {
+	// 회원가입 서버 요청
+	const onSubmit = (value) => {
+		console.log(value);
 		dispatch(
 			singUp({
-				email,
-				name,
-				userId,
-				password,
+				email: value.email,
+				name: value.username,
+				userId: value.userId,
+				password: value.password,
 			}),
 			[dispatch],
 		);
@@ -38,47 +33,11 @@ const SignUp = () => {
 		navigate("/login");
 	};
 
-	const EmailOnChange = (e) => {
-		SetEmail(e.target.value);
-	};
-	const NameOnChange = (e) => {
-		SetName(e.target.value);
-	};
-	const UserIdOnChange = (e) => {
-		SetUserId(e.target.value);
-	};
-	const PassWordOnChange = (e) => {
-		SetPassword(e.target.value);
-	};
-
-	// 유효성 검사
-	const EmailCheck = () => {
-		if (email.includes("@")) {
-			SetIsEmail(true);
-		} else {
-			SetIsEmail(false);
-		}
-	};
-
-	const NameCheck = () => {
-		if (name) {
-			SetIsName(true);
-		} else {
-			SetIsName(false);
-		}
-	};
-
-	const UserIdCheck = () => {
-		if (userId) {
-			SetIsUserId(true);
-		} else {
-			SetIsUserId(false);
-		}
-	};
-
-	const PasswordCheckClickHandler = () => {
+	const PasswordCheckClickHandler = (e) => {
+		e.preventDefault();
 		SetCheckPassword(!checkPassword);
 	};
+
 
 	return (
 		<>
@@ -103,116 +62,127 @@ const SignUp = () => {
 								<span>또는</span>
 								<hr className="right" />
 							</div>
-							<div className="signup_form">
+							<form className="signup_form">
 								<div className="signup_content_form">
 									<input
+										name="email"
 										type="email"
-										value={email}
-										onChange={EmailOnChange}
-										onKeyUp={EmailCheck}
-										required
+										autoComplete="off"
+										{...register("email", {required: "Required", pattern: /^\S+@\S+$/i})}
 									/>
+									{errors.email && errors.email.type !== `/^\S+@\S+$/i` &&
+										<div className="signup_check_box">
+											<span className="signup_check">
+												<BiXCircle color={"#F04756"} size={25} />
+											</span>
+										</div>}
+									{errors.email && errors.email.type === "required"  &&
+									<div className="signup_check_box">
+										<span className="signup_check">
+											<BiXCircle color={"#F04756"} size={25} />
+										</span>
+									</div>}
 									<label className="signup_label">
 										<span className="signup_title">
 											이메일 주소
 										</span>
 									</label>
-									{!IsEmail && (
+								</div>
+								<div className="signup_content_form">
+									<input
+										name="username"
+										autoComplete="off"
+										{...register("username", {required: "Required", minLength: 4})}
+									/>
+									 {errors.username && errors.username.type === "required"  &&
 										<div className="signup_check_box">
 											<span className="signup_check">
 												<BiXCircle color={"#F04756"} size={25} />
 											</span>
-										</div>
-									)}
-								</div>
-								<div className="signup_content_form">
-									<input
-										type="text"
-										value={name}
-										onChange={NameOnChange}
-										onKeyUp={NameCheck}
-										required
-									/>
+										</div>}
+									{errors.username && errors.userId.type === "minLength"  &&
+									<div className="signup_check_box">
+										<span className="signup_check">
+											<BiXCircle color={"#F04756"} size={25} />
+										</span>
+									</div>}
 									<label className="signup_label">
 										<span className="signup_title"> 성명 </span>
 									</label>
-									{IsName && (
-										<div className="signup_check_box">
-											<span className="signup_check">
-												<BiCheckCircle color={"#c7c7c7"} size={25} />
-											</span>
-										</div>
-									)}
 								</div>
 								<div className="signup_content_form">
 									<input
-										type="text"
-										value={userId}
-										onChange={UserIdOnChange}
-										onKeyUp={UserIdCheck}
-										required
+										name="userId"
+										autoComplete="off"
+										{...register("userId", {required: "Required", minLength: 4})}
 									/>
-									<label className="signup_label">
-										<span className="signup_title">사용자 이름</span>
-									</label>
-									{!ISUserId && (
+									{errors.userId && errors.userId.type === "required" &&
 										<div className="signup_check_box">
 											<span className="signup_check">
 												<BiXCircle color={"#F04756"} size={25} />
 											</span>
-										</div>
-									)}
+										</div>}
+									{errors.userId && errors.userId.type === "minLength" &&
+									<div className="signup_check_box">
+										<span className="signup_check">
+											<BiXCircle color={"#F04756"} size={25} />
+										</span>
+									</div>}
+									<label className="signup_label">
+										<span className="signup_title">사용자 이름</span>
+									</label>
 								</div>
 								<div className="signup_content_form">
 									<input
-										required
+										name="password"
 										type={checkPassword ? "password" : "text"}
-										value={password}
-										onChange={PassWordOnChange}
+										autoComplete="off"
+										{...register("password", {required: "Required", minLength: 6})}
 										onKeyPress={(e) => {if (e.key == 'Enter'){
-											e.preventDefault();
-											SingUpClickHandler()
+										  handleSubmit(onSubmit)
 										}
 									}}
 										/>
-
-									<label className="signup_label">
-										<span className="signup_title">비밀번호</span>
-									</label>
-									<div className="signup_check_box_pwd">
-										{password.length > 6 && (
-											<span className="signup_check_pwd">
-												<BiCheckCircle color={"#c7c7c7"} size={25} />
-											</span>
-										)}
-										{password && (
 											<div>
 												{checkPassword ? (
 													<button
-														onClick={PasswordCheckClickHandler}
 														className="signup_pwd_check"
+														onClick={PasswordCheckClickHandler}
 													>
 														비밀번호 표시
 													</button>
 												) : (
 													<button
-														onClick={PasswordCheckClickHandler}
 														className="signup_pwd_check"
+														onClick={PasswordCheckClickHandler}														
 													>
 														숨기기
 													</button>
 												)}
 											</div>
-										)}
+										{errors.password && errors.password.type === "minLength" &&
+											<span className="signup_check_pwd">
+												<BiXCircle color={"#F04756"} size={25} />
+											</span>}
+										{errors.password && errors.password.type === "Required" &&
+										<span className="signup_check_pwd">
+											<BiXCircle color={"#F04756"} size={25} />
+										</span>}
+
+									<label className="signup_label">
+										<span className="signup_title">비밀번호</span>
+									</label>
+									<div className="signup_check_box_pwd">
 									</div>
 								</div>
 									<button
-										className={email && password && userId && name ? "signup_btn_active" : "signup_btn_disabled"}
-										onClick={SingUpClickHandler}
+									className="signup_btn_active"
+										// className={ showSubmit ? "signup_btn_active" : "signup_btn_disabled"}
+										onClick={handleSubmit(onSubmit)}
 									>
 										가입
 									</button>
-							</div>
+							</form>
 						</div>
 						<div className="signup_login">
 							계정이 있으신가요?

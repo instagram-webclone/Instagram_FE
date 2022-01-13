@@ -2,7 +2,7 @@
 @import "../../../common/mixin";
 
 .postBoard_allContainer{
-	overflow: hidden;
+	overflow-x: hidden;
 	background-color: $backgroundGray;
 	width: 99vw;
 	height: 94vh;
@@ -12,7 +12,7 @@
 		display: flex;
 		margin: 50px auto auto auto ;
 		width: 100%;
-		height: 48vh;
+		height: 70vh;
 		justify-content: center;
 		margin-bottom: 50px;
 
@@ -86,7 +86,7 @@
 				display: flex;
 				flex-direction: column;
 				width: 100%;
-				height: 88%;
+				height: 86%;
 
 				.postBoard_comment_list{
 					height: 100%;

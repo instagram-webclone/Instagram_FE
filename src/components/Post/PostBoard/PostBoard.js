@@ -48,7 +48,6 @@ const PostBoard = () => {
 	 const pageSection = "fristPage";
 	 dispatch(loading(true));
 	 dispatch(getPostDetail({postId, page, pageSection}));
-	//  dispatch(getUserPost(id));
 	 setPage(page + 1);
  }, []);
 
@@ -271,8 +270,6 @@ const PostBoard = () => {
 								<ProfilePosts
 								key = {idx}
 								list={post}
-								// picture = {post.imageUrl}
-								// userId = {post._id}
 								/>
 							))}
 						</div>

@@ -21,7 +21,6 @@
 		z-index: 100;
 		background-color: $instaWhite;
 		cursor: pointer;
-		border: 3px solid blue;
 
 		& > div {
 			border-bottom: 1px solid $instaGray;
@@ -53,7 +52,6 @@
 		z-index: 100;
 		background-color: $instaWhite;
 		cursor: pointer;
-		border: 3px solid red;
 
 		& > div {
 			border-bottom: 1px solid $instaGray;
@@ -89,11 +87,9 @@
 @include tablet {
 	.profile_modal_container {
 	.postDetailComment_modal_modal {
-		border: 3px solid skyblue;
 		transform: translateY(-40%);
 	}
 	.postDetailComment_others_modal {
-		border: 3px solid green;
 		transform: translateY(-50%);
 	}
 }

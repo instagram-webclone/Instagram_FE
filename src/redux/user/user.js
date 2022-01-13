@@ -8,6 +8,7 @@ import {socket} from "../../common/socket";
 export const singUp = createAsyncThunk(
   "user/signup",
   async (data, thunkAPI) => {
+    console.log(data.email);
     try {
       const response = await Api({
         url: `/auth/signup`,
@@ -19,6 +20,7 @@ export const singUp = createAsyncThunk(
           password: data.password,
         },
       });
+      console.log(data);
     } catch (e) {
       return thunkAPI.rejectWithValue({
         error: "회원가입실패",
