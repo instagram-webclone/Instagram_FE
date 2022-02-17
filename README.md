@@ -18,6 +18,19 @@
 
 ****
 
+✔ 백엔드
+
+- JS
+- Node.js
+- Express
+- Mongoose
+- MongoDB
+- Firebase Storage
+- socket.io
+- AWS EC2
+
+****
+
 <h3>주요 기능</h3>
 
 - 게시글, 댓글 CRUD
