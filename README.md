@@ -25,9 +25,9 @@
 - 실시간 채팅, 좋아요 알림, 팔로우 알림
 - 포스팅 무한스크롤
 - 댓글 페이지네이션
-
  <img src="https://blog.kakaocdn.net/dn/bingMS/btroSWGim9j/PefWnXEvs15azodqwsooUK/img.gif">
  <img src="https://blog.kakaocdn.net/dn/zhBrV/btrpoxzoVxd/VbZ09IIb8DCOfWDl8tGzx0/img.gif">
+
 
 ****
 
