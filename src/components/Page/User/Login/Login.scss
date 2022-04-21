@@ -1,13 +1,13 @@
-@import "./src/common/variables.scss";
-@import "./src/common/mixin";
+@import "../../../../common/variables";
+@import "../../../../common/mixin";
 
 .login_all {
 	display: flex;
 	margin: auto;
 	justify-content: center;
 	text-align: center;
-	height: 85vh;
-	background-color: #fafafa;
+	height: 90vh;
+	background-color: $backgroundGray;
 }
 
 .login_side_img {
@@ -19,6 +19,10 @@
 	margin: auto 0 auto 0;
 	position: relative;
 	box-sizing: border-box;
+
+	& > div:first-child {
+		display: none;
+	}
 
 	.login_pic1 {
 		width: 455px;
@@ -70,7 +74,6 @@
 			@include fontSize("small");
 			pointer-events: none;
 			position: absolute;
-			// overflow: hidden;
 		}
 
 		.login_content_username {
@@ -78,7 +81,6 @@
 			left: 0;
 			bottom: 10px;
 			@include fontSize("normal");
-			// transition: trnasform all 0.3s ease;
 		}
 
 		& > input {
@@ -107,15 +109,10 @@
 }
 
 .login_login_user input:focus + .login_label_username .login_content_username,
-.login_login_user input:valid + .login_label_username .login_content_username {
+.login_login_user input:valid + .login_label_username .login_content_username{
 	transform: translateY(-45%);
 	@include fontSize("small");
 }
-
-// .login_login_user input:focus + .login_label_username::after,
-// .login_login_user input:valid + .login_label_username::after {
-// 	transform: translateX(0%);
-// }
 
 .login_login_pwd {
 	display: flex;
@@ -128,17 +125,6 @@
 	color: #8e8e8e;
 	outline: none;
 	@include fontSize("normal");
-
-	// & > label::after {
-	// 	content: "";
-	// 	position: absolute;
-	// 	left: 0px;
-	// 	bottom: 0px;
-	// 	height: 100%;
-	// 	width: 100%;
-	// 	border-bottom: 3px solid blue;
-	// 	transform: translateX(-100%);
-	// }
 
 	& > input {
 		height: 7px;
@@ -161,7 +147,6 @@
 		@include fontSize("small");
 		pointer-events: none;
 		position: absolute;
-		// overflow: hidden;
 	}
 
 	.login_content_pwd {
@@ -169,7 +154,6 @@
 		left: 0;
 		bottom: 10px;
 		@include fontSize("normal");
-		// transition: trnasform all 0.3s ease;
 	}
 
 	.login_check_pwd {
@@ -194,11 +178,6 @@
 	transform: translateY(-20%);
 	font-size: 6px;
 }
-
-// .login_login_pwd input:focus + .login_label_pwd::after,
-// .login_login_pwd input:valid + .login_label_pwd::after {
-// 	transform: translateX(0%);
-// }
 
 .login_btn_disabled {
 	width: 268px;

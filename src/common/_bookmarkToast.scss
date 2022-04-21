@@ -32,13 +32,13 @@
   }
 
   & > span:nth-child(1) {
-    @include fontSize('biglarge');
+    @include fontSize('normal');
     font-weight: bold;
     color: $instaMenuGray;
   }
 
   & > span:nth-child(2) {
-    @include fontSize('biglarge');
+    @include fontSize('normal');
     color: $instaBlue;
     font-weight: bold;
     cursor: pointer;

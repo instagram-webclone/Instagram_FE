@@ -571,9 +571,37 @@
 
 }
 
+// 모바일크기 반응형
 
 @include mobile() {
   .mobile_my_profile {
     display: contents;
+  }
+  .profile_all .profile_content .profile_profileBox .profile_post_dir{
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin: 0 0px 50px 0px;
+    border-top: none;
+
+    .profile_post_clicked{
+      margin: 0 auto;
+      border: none;
+      & > span {
+        & > span {
+          display: none;
+        }
+      }
+    }
+    .profile_post_unclicked{
+      margin: 0 auto;
+      border: none;
+      & > span {
+        & > span {
+          display: none;
+        }
+      }
+    }
   }
 }

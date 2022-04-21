@@ -110,26 +110,26 @@ const Profile = () => {
               {/* 클릭한 해당 카테고리만 css(border-top) 추가 */}
               <a className={IsSelected === 1 ? "profile_post_clicked" : "profile_post_unclicked"}>
 									<span onClick={() => navigate(`/profile/${id}/posts`)}>
-											<MdGridOn/> 게시물
+                  <span><MdGridOn/></span> 게시물
 									</span>
               </a>
 
               <a className={IsSelected === 2 ? "profile_post_clicked" : "profile_post_unclicked"}>
 									<span onClick={() => navigate(`/profile/${id}/channel`)}>
-											<FiPlayCircle/> 동영상
+                  <span><FiPlayCircle/></span> 동영상
 									</span>
               </a>
 
               {myProfile &&
               <div className={IsSelected === 3 ? "profile_post_clicked" : "profile_post_unclicked"}>
                 <span onClick={() => navigate(`/profile/${id}/saved`)}>
-                  <BiBookmark/> 저장됨
+                <span><BiBookmark/></span> 저장됨
                 </span>
               </div>}
 
               <a className={IsSelected === 4 ? "profile_post_clicked" : "profile_post_unclicked"}>
 									<span onClick={() => navigate(`/profile/${id}/tagged`)}>
-											<RiAccountBoxLine/> 태그됨
+                  <span><RiAccountBoxLine/></span> 태그됨
 									</span>
               </a>
             </div>

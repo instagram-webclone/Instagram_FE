@@ -8,6 +8,7 @@ import PostComment from "./PostComment";
 import PostGetComment from "./PostGetComment";
 import PostLikeModal from "../PostModal/PostLikeModal";
 
+import "../../../common/_postComment.scss";
 import "./PostCard.scss";
 import {post_heart, post_red_heart, message, text, dot, post_save, post_saveActive, none_profile} from "../../../common/IconImage";
 import dompurify from "dompurify";
@@ -121,6 +122,7 @@ const PostCard = ({contents, createdAt, writer, postId, likeCount, postImage,
   const [openModal, setOpenModal] = useState(false); 
   const show_postOptionModal = () => {
     setOpenModal(true);
+    document.body.style.overflow = "hidden";
   };
 
   return (
@@ -211,7 +213,7 @@ const PostCard = ({contents, createdAt, writer, postId, likeCount, postImage,
                 isLike={comment.isLike}/>
             ))}
             <div className="post_time">{time}</div>
-            <div className="postDetail_postComment">
+            <div className="postBoard_postComment">
               {commentIsAllowed ? <PostComment path={path} postId={postId}/>:
               <div className="post_blockCmt">이 게시물에 대한 댓글 기능이 제한되었습니다.</div>}
             </div>

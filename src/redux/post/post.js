@@ -4,6 +4,7 @@ import { history } from "../../history";
 import { add_modal } from "../modal/modalSlice";
 import socketIO from "socket.io-client";
 import { socket } from "../../common/socket";
+import { useDispatch } from 'react-redux';
 
 export const addPost = createAsyncThunk(
   "post/write",
@@ -41,7 +42,7 @@ export const getPost = createAsyncThunk(
           Authorization: `Bearer ${AccessToken}`,
         },
       });
-
+      console.log(response);
       return { data: response.data, pageSection: pageSection };
     } catch (e) {
       alert("로그인을 다시해주세요");
@@ -76,7 +77,7 @@ export const deletePost = createAsyncThunk(
 // 개별 페이지 불러오기
 export const getPostDetail = createAsyncThunk(
   "post/getPostDetail",
-  async ({postId, page, pageSection}, thunkAPI) => {
+  async ({postId, page, pageSection}, thunkAPI ) => {
     const AccessToken = localStorage.getItem("user");
     try {
       const response = await Api({
@@ -86,11 +87,10 @@ export const getPostDetail = createAsyncThunk(
           Authorization: `Bearer ${AccessToken}`,
         },
       });
-      console.log(response);
-      console.log(response.data.post[0].writer.userId);
-      // if (response.data.ok) {
-      //   thunkAPI.dispatch(getUserPost(response.data.post[0].writer.userId));
-      // }
+      if (response.data.ok) {
+        const id = response.data.post[0].writer.userId;
+        thunkAPI.dispatch(getUserPost(id));
+      };
       return { data: response.data, pageSection: pageSection };
     } catch (e) {
       console.log("getPostDetail 에러");
