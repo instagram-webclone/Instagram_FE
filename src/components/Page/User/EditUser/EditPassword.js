@@ -25,7 +25,9 @@ const EditPassword = () => {
   }
 
   const ChangePwdClickHandler = () => {
-
+    if(newPwd !== checkNewPwd){
+      alert("비밀번호가 다릅니다 다시 확인해 주세요")
+    }
     dispatch(changePassword({
       beforePwd,
       newPwd,
@@ -49,24 +51,24 @@ const EditPassword = () => {
           <div className="password_item">
             <div>이전 비밀번호</div>
             <div>
-              <input value={beforePwd} onChange={beforePwdOnChange}/>
+              <input type="password" value={beforePwd} onChange={beforePwdOnChange}/>
             </div>
           </div>
           <div className="password_item">
             <div>새 비밀번호</div>
             <div>
-              <input value={newPwd} onChange={newPwdOnChange}/>
+              <input type="password" value={newPwd} onChange={newPwdOnChange}/>
             </div>
           </div>
           <div className="password_item">
             <div>새 비밀번호 확인</div>
             <div>
-              <input value={checkNewPwd} onChange={checkNewPwdOnChange}/>
+              <input type="password" value={checkNewPwd} onChange={checkNewPwdOnChange}/>
             </div>
           </div>
           <div className="password_item">
-            <button>비밀번호 변경</button>
-            <div onClick={ChangePwdClickHandler}>비밀번호를 잊으셨나요?</div>
+            <button onClick={ChangePwdClickHandler}>비밀번호 변경</button>
+            <div>비밀번호를 잊으셨나요?</div>
           </div>
         </div>
       </div>

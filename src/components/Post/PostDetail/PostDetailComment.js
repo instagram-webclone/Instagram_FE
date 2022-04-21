@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router';
 
-import { getLikedListComment, likedComment } from '../../../redux/post/comment';
+import {likedComment } from '../../../redux/post/comment';
 import { replyReducer } from '../../../redux/post/postSlice';
 import PostReplyComment from './PostReplyComment';
 
@@ -110,7 +110,7 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, likeCount
     
     <div className="postDetail_comments" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
     <div className="postDetail_comment_pp">
-      <img src={user_img}/>
+      <img src={user_img} alt="user_img"/>
     </div>
     <div className="postDetail_comments_comment">
       <div>

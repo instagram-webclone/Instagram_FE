@@ -3,67 +3,71 @@
 
 //미디어쿼리
 @mixin mobile {
-	@media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
-		@content;
-	}
+  @media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
+    @content;
+  }
 }
+
 @mixin tablet {
-	@media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px}) {
-		@content;
-	}
+  @media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px}) {
+    @content;
+  }
 }
+
 @mixin desktop {
-	@media (min-width: #{$breakpoint-desktop}) and (max-width: #{$breakpoint-bigDesktop - 1px}) {
-		@content;
-	}
+  @media (min-width: #{$breakpoint-desktop}) and (max-width: #{$breakpoint-bigDesktop - 1px}) {
+    @content;
+  }
 }
+
 @mixin bigDesktop {
-	@media (min-width: #{$breakpoint-bigDesktop}) {
-		@content;
-	}
+  @media (min-width: #{$breakpoint-bigDesktop}) {
+    @content;
+  }
 }
 
 //폰트사이즈
 @mixin fontSize($size) {
-	@if $size == "small" {
-		font-size: 10px;
-	} @else if $size == "large" {
-		font-size: 14px;
-	}@else if $size == "biglarge"{
-		font-size: 15px;
-	} @else {
-		font-size: 12px;
-	}
+  @if $size == "small" {
+    font-size: 10px;
+  } @else if $size == "large" {
+    font-size: 14px;
+  } @else if $size == "biglarge" {
+    font-size: 15px;
+  } @else {
+    font-size: 12px;
+  }
 }
 
 //버튼스타일
 @mixin buttonStyle($color) {
-	@if $color == "white" {
-		width: 50px;
-		height: 30px;
-		color: $instaMenuBlack;
-		font-weight: 600;
-		background: $instaWhite;
-		border: 1px solid $instaGray;
-		border-radius: 5px;
-		@include fontSize('large');
-	} @else if $color == "blue" {
-		width: 50px;
-		height: 30px;
-		color: $instaWhite;
-		font-weight: 600;
-		background: $instaBlue;
-		border: none;
-		border-radius: 5px;
-		@include fontSize('large');
-	}
+  @if $color == "white" {
+    width: 50px;
+    height: 30px;
+    color: $instaMenuBlack;
+    font-weight: 600;
+    background: $instaWhite;
+    border: 1px solid $instaGray;
+    border-radius: 5px;
+    @include fontSize('large');
+  } @else if $color == "blue" {
+    width: 50px;
+    height: 30px;
+    color: $instaWhite;
+    font-weight: 600;
+    background: $instaBlue;
+    border: none;
+    border-radius: 5px;
+    @include fontSize('large');
+  }
 }
+
 //프로필사진
-@mixin profilePicture($size){
-	@if $size == "small" {
-		width: 25px;
-		height: 25px;
-		border-radius: 25px;
-		border: 1px solid $instaLightGray;
-	}
+@mixin profilePicture($size) {
+  @if $size == "small" {
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    border: 1px solid $instaLightGray;
+  }
 }
