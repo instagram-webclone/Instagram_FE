@@ -40,6 +40,8 @@
 - 댓글 페이지네이션
  <img src="https://blog.kakaocdn.net/dn/bingMS/btroSWGim9j/PefWnXEvs15azodqwsooUK/img.gif">
  <img src="https://blog.kakaocdn.net/dn/zhBrV/btrpoxzoVxd/VbZ09IIb8DCOfWDl8tGzx0/img.gif">
+  <img src="https://user-images.githubusercontent.com/85723134/196379304-b431225b-e8a8-4bdb-8367-e30c70bcc394.png">
+ 
 
 
 ****
